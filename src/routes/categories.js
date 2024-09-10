@@ -20,7 +20,7 @@
  *           schema:
  *             type: object
  *             properties:
- *               categoryName:
+ *               name:
  *                 type: string
  *                 description: Kateqoriya adı
  *     responses:
@@ -34,7 +34,7 @@
  *                 id:
  *                   type: integer
  *                   description: Yaradılan kateqoriyanın ID-si
- *                 categoryName:
+ *                 name:
  *                   type: string
  *                   description: Kateqoriya adı
  *       400:
@@ -79,7 +79,7 @@
  *                   id:
  *                     type: integer
  *                     description: Kateqoriya ID-si
- *                   categoryName:
+ *                   name:
  *                     type: string
  *                     description: Kateqoriya adı
  *                   subcategory:
@@ -90,7 +90,7 @@
  *                         id:
  *                           type: integer
  *                           description: Alt kateqoriya ID-si
- *                         categoryName:
+ *                         name:
  *                           type: string
  *                           description: Alt kateqoriya adı
  *       500:
@@ -130,7 +130,7 @@
  *                 id:
  *                   type: integer
  *                   description: Kateqoriya ID-si
- *                 categoryName:
+ *                 name:
  *                   type: string
  *                   description: Kateqoriya adı
  *                 subcategory:
@@ -141,7 +141,7 @@
  *                       id:
  *                         type: integer
  *                         description: Alt kateqoriya ID-si
- *                       categoryName:
+ *                       name:
  *                         type: string
  *                         description: Alt kateqoriya adı
  *       400:
@@ -188,7 +188,7 @@
  *           schema:
  *             type: object
  *             properties:
- *               categoryName:
+ *               name:
  *                 type: string
  *                 description: Yenilənəcək kateqoriya adı
  *     responses:
@@ -202,7 +202,7 @@
  *                 id:
  *                   type: integer
  *                   description: Yenilənmiş kateqoriyanın ID-si
- *                 categoryName:
+ *                 name:
  *                   type: string
  *                   description: Yenilənmiş kateqoriya adı
  *       404:
@@ -291,7 +291,7 @@
  *           schema:
  *             type: object
  *             properties:
- *               categoryName:
+ *               name:
  *                 type: string
  *                 description: Alt kateqoriya adı
  *               categoryId:
@@ -308,7 +308,7 @@
  *                 id:
  *                   type: integer
  *                   description: Yaradılan alt kateqoriyanın ID-si
- *                 categoryName:
+ *                 name:
  *                   type: string
  *                   description: Alt kateqoriya adı
  *       400:
@@ -355,7 +355,7 @@
  *           schema:
  *             type: object
  *             properties:
- *               categoryName:
+ *               name:
  *                 type: string
  *                 description: Yenilənəcək alt kateqoriya adı
  *     responses:
@@ -369,7 +369,7 @@
  *                 id:
  *                   type: integer
  *                   description: Yenilənmiş alt kateqoriyanın ID-si
- *                 categoryName:
+ *                 name:
  *                   type: string
  *                   description: Yenilənmiş alt kateqoriya adı
  *       404:
@@ -467,8 +467,8 @@ router.get('/:id', getCategoriesById);
 router.put('/:id', validator(categorySchema), auth, editCategoriesById);
 router.delete('/:id', auth, deleteCategoryById);
 
-router.post('/subcategory', auth, createSubcategory);
-router.put('/subcategory/:id', auth, updateSubcategory);
+router.post('/subcategory',validator(subcategorySchema), auth, createSubcategory);
+router.put('/subcategory/:id',validator(categorySchema), auth, updateSubcategory);
 router.delete('/subcategory/:id', auth, deleteSubcategory);
 
 module.exports = router;

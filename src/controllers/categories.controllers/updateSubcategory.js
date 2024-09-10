@@ -3,12 +3,13 @@ const prisma = new PrismaClient();
 
 const updateSubcategory = async (req, res) => {
     const { id } = req.params;
-    const { categoryName } = req.body;
+    const { name } = req.body;
+    if (!id) return res.status(400).json({ error: "Id mütləq göndərilməlidir!" })
 
     try {
         const subcategory = await prisma.subcategory.update({
             where: { id: Number(id) },
-            data: { categoryName },
+            data: { name },
         });
         res.status(200).json({ message: "Subcategory updated successfully", subcategory });
     } catch (error) {

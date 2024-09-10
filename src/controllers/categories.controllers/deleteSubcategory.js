@@ -3,6 +3,7 @@ const prisma = new PrismaClient();
 
 const deleteSubcategory = async (req, res) => {
     const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Id mütləq göndərilməlidir!" })
 
     try {
         await prisma.subcategory.delete({

@@ -2,14 +2,16 @@ const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
-const editCategoriesById = async (req, res) => {  
+const editCategoriesById = async (req, res) => {
     try {
         const { id } = req.params;
-        const { categoryName } = req.body;
+        if (!id) return res.status(400).json({ error: "Id mütləq göndərilməlidir!" })
+        const { name } = req.body;
         const updatedCategory = await prisma.category.update({
             where: { id: Number(id) },
-            data: { categoryName }
+            data: { name }
         });
+        
         if (updatedCategory) { res.status(200).json(updatedCategory); }
         else { res.status(404).json({ error: "Category not found" }); }
     } catch (error) {
@@ -17,5 +19,5 @@ const editCategoriesById = async (req, res) => {
     }
 }
 
-module.exports = editCategoriesById ;
+module.exports = editCategoriesById;
 

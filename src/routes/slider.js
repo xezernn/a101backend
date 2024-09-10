@@ -15,15 +15,15 @@
  *     security:
  *       - bearerAuth: []
  *     requestBody:
+ *       required: true
  *       content:
- *         multipart/form-data:
+ *         application/json:
  *           schema:
  *             type: object
  *             properties:
  *               img:
  *                 type: string
- *                 format: binary
- *                 description: Slayder üçün şəkil faylı (jpg, jpeg, png, gif formatlarında)
+ *                 description: Slayder üçün şəkilin URL-i
  *               categoryId:
  *                 type: integer
  *                 description: Slayderin aid olduğu kateqoriya ID-si
@@ -170,10 +170,9 @@ const router = express.Router();
 const { createSlider, getSliders, deleteSliderById } = require('../controllers/slider.controllers');
 
 const auth = require('../middlewares/auth.middleware');
-const upload = require('../middlewares/upload.middleware');
 
-router.post('/', auth, upload.single('img'), createSlider);
+router.post('/', auth, createSlider);
 router.get('/', getSliders);
-router.delete('/:id', deleteSliderById);
+router.delete('/:id', auth, deleteSliderById);
 
 module.exports = router;

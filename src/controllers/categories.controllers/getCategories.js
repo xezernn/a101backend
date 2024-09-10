@@ -5,10 +5,10 @@ const getCategories = async (req, res) => {
     try {
         const categories = await prisma.category.findMany({
             include: {
-                Subcategory: {
+                subcategories: {
                     select: {
                         id: true,
-                        categoryName: true
+                        name: true
                     }
                 }
             }
@@ -16,11 +16,11 @@ const getCategories = async (req, res) => {
 
         const formattedCategories = categories.map(category => ({
             id: category.id,
-            categoryName: category.categoryName,
-            subcategory: category.Subcategory.map(subcat => ({
+            name: category.name,
+            subcategory: category.subcategories.map(subcat => ({
                 id: subcat.id,
-                categoryName: subcat.categoryName.toLowerCase(),
-                slug: `${category.categoryName.toLocaleLowerCase("tr-Tr").split(" ").join("-")}/${subcat.categoryName.toLocaleLowerCase("tr-Tr").split(" ").join("-")}`
+                name: subcat.name,
+                slug: `${category.name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}/${subcat.name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}`
             }
             ))
         }))

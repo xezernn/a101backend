@@ -20,7 +20,7 @@
  *           schema:
  *             type: object
  *             properties:
- *               login:
+ *               username:
  *                 type: string
  *                 description: İstifadəçi adı
  *               password:
@@ -44,7 +44,7 @@
  *                 refresh:
  *                   type: string
  *                   description: Yeniləmə tokeni
- *                 login:
+ *                 username:
  *                   type: string
  *                   description: İstifadəçi adı
  *       400:
@@ -82,7 +82,7 @@
  *           schema:
  *             type: object
  *             properties:
- *               login:
+ *               username:
  *                 type: string
  *                 description: İstifadəçi adı
  *               password:
@@ -374,7 +374,7 @@
  *                   id:
  *                     type: integer
  *                     description: Admin ID-si
- *                   login:
+ *                   username:
  *                     type: string
  *                     description: Admin istifadəçi adı
  *       500:

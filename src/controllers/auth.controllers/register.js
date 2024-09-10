@@ -9,6 +9,8 @@ const register = async (req, res) => {
     try {
         const { username, password, role } = req.body;
 
+        if(!username || !password) return res.status(400).json({"error":"'username' ve ya 'password' parametrleri gonderilmeyib"})
+
         // İstifadəçinin mövcud olub-olmadığını yoxlayırıq
         const existingUser = await prisma.user.findUnique({
             where: { username }

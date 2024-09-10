@@ -11,8 +11,13 @@ const options = {
     },
     servers: [
       {
-        url: 'https://neptunbk.vercel.app',
+        url: 'http://localhost:3219',
+        description: 'Local development server'
       },
+      {
+        url: 'https://a101backend.vercel.app',
+        description: 'Production server'
+      }
     ],
     components: {
       securitySchemes: {

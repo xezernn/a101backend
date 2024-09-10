@@ -11,10 +11,10 @@ const getCategoriesById = async (req, res) => {
         const categories = await prisma.category.findMany({
             where: { id: id },
             include: {
-                Subcategory: {
+                subcategories: {
                     select: {
                         id: true,
-                        categoryName: true
+                        name: true,
                     }
                 }
             }
@@ -22,12 +22,12 @@ const getCategoriesById = async (req, res) => {
 
         const yeniObj = {
             id: categories[0].id,
-            categoryName: categories[0].categoryName,
-            subcategory: categories[0].Subcategory.map(item => {
+            name: categories[0].name,
+            subcategory: categories[0].subcategories.map(item => {
                 return {
                     id: item.id,
-                    categoryName: item.categoryName,
-                    slug : `${categories[0].categoryName.toLocaleLowerCase("tr-Tr").split(" ").join("-")}/${item.categoryName.toLocaleLowerCase("tr-Tr").split(" ").join("-")}`                
+                    name: item.name,
+                    slug : `${categories[0].name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}/${item.name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}`                
                 }
             })
         }

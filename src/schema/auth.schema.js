@@ -1,7 +1,7 @@
 const { z } = require("zod");
 
 const authSchema = z.object({
-    login: z.string()
+    username: z.string()
         .min(3, { message: 'Login must be at least 3 characters long' })
         .max(20, { message: 'Login must be less than 255 characters' })
         .trim()
