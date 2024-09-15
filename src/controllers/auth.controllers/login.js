@@ -22,8 +22,8 @@ const login = async (req, res) => {
             return res.status(401).json({ error: 'Invalid username credentials' });
         }
 
-        const token = generateAccesToken({ userid: existingUser.id })
-        const refresh = generateRefreshToken({ userid: existingUser.id })
+        const token = generateAccesToken({ userid: existingUser.id, role: existingUser.role })
+        const refresh = generateRefreshToken({ userid: existingUser.id, role: existingUser.role })
 
         res.status(200).json({ refresh, token, status: true });
     } catch (error) {

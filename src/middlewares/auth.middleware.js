@@ -15,9 +15,9 @@ const auth = async (req, res, next) => {
         if (!token) {
             return res.status(401).json({ error: 'Unauthorized: Malformed token' });
         }
-        
+
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        
+
         const user = await prisma.user.findUnique({
             where: { id: decoded.userid }
         });
@@ -25,6 +25,8 @@ const auth = async (req, res, next) => {
         if (!user.id) {
             return res.status(401).json({ error: 'Unauthorized: Invalid user' });
         }
+
+        if (user.role != "ADMIN") return res.status(403).json({ error: 'İcazəniz yoxdur' });
 
         req.user = user;
         next();

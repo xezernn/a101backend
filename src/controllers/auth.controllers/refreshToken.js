@@ -12,13 +12,15 @@ function refreshToken(req, res) {
     try {
         const decoder = jwt.verify(refreshToken, JWT_REFRESH_SECRET)
         const id = decoder.userid
+        const role = decoder.role
 
-        const token = generateAccesToken({ userid: id })
-        const refresh = generateRefreshToken({ userid: id })
+        const token = generateAccesToken({ userid: id, role: role })
+        const refresh = generateRefreshToken({ userid: id, role: role })
         res.status(201).json({
             status: true,
             token,
-            refresh
+            refresh,
+            role
         })
 
     } catch (error) {
