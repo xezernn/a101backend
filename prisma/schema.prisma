@@ -25,16 +25,17 @@ model Product {
   id             Int        @id @default(autoincrement())
   name           String
   description    String
-  price          Float
-  discount       Int        @default(0)
+  metadata       String?
   imageUrl       String[]
   sizes          String[]
   categoryId     Int
   subcategoryId  Int
+  price          Float  
+  discount       Float  
   category       Category    @relation(fields: [categoryId], references: [id])
   subcategory    Subcategory @relation(fields: [subcategoryId], references: [id])
-  isStok         Boolean     @default(true)
   isTopSelling   Boolean     @default(false)
+  isStok         Boolean     @default(true)
   isCheaps       Boolean     @default(false)
 }
 
@@ -43,6 +44,7 @@ model Category {
   name        String
   products    Product[]     
   subcategories Subcategory[]
+  slider      Slider[]  
 }
 
 model Subcategory {
@@ -50,5 +52,15 @@ model Subcategory {
   name        String
   categoryId  Int
   category    Category       @relation(fields: [categoryId], references: [id])
-  products    Product[]     
+  products    Product[]   
+  slider      Slider[]  
+}
+
+model Slider {
+  id            Int         @id @default(autoincrement())
+  img           String       
+  categoryId    Int
+  subcategoryId Int
+  category       Category    @relation(fields: [categoryId], references: [id])
+  subcategory    Subcategory @relation(fields: [subcategoryId], references: [id])
 }

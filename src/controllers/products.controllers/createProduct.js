@@ -1,85 +1,68 @@
 const { PrismaClient } = require('@prisma/client');
 const { z } = require('zod');
+const productSchema = require('../../schema/product.schema');
 const prisma = new PrismaClient();
 
-const productSchema = z.object({
-    img: z.array(z.string().url({ message: 'Invalid URL format' })).nonempty({ message: 'At least one image URL is required' }).optional(),
-    name: z.string()
-        .min(3, { message: 'Product name must be at least 3 characters long' })
-        .max(255, { message: 'Product name must be less than 255 characters' })
-        .trim().optional(),
-    price: z.number()
-        .positive({ message: 'Price must be a positive number' })
-        .min(0.01, { message: 'Price must be at least 0.01' })
-        .max(10000, { message: 'Price must be less than 10,000' }).optional(),
-    discount: z.number()
-        .min(0, { message: 'Discount must be at least 0' })
-        .int({ message: 'Discount must be an integer' })
-        .max(100, { message: 'Discount must be less than or equal to 100' }).optional(),
-    categoryId: z.number()
-        .int({ message: 'Category ID must be an integer' })
-        .positive({ message: 'Category ID must be a positive integer' }).optional(),
-    subcategoryId: z.number()
-        .int({ message: 'Subcategory ID must be an integer' })
-        .positive({ message: 'Subcategory ID must be a positive integer' }).optional(),
-    description: z.string()
-        .min(3, { message: 'Product description must be at least 3 characters long' })
-        .max(1000, { message: 'Product description must be less than 1000 characters' })
-        .trim().optional(),
-    metadata: z.string().optional(),
-    isTopSelling: z.boolean().optional()
-});
+// Product schema for validation
 
+// Controller function to create a product
 const createProduct = async (req, res) => {
-    console.log("sdsdfcsd");
-
-    const { img, price, discount, categoryId, subcategoryId } = req.body;
-
+    // Parse and validate input data using Zod schema
     const parseResult = productSchema.safeParse({
         ...req.body,
-        img,
-        price: parseFloat(price),
-        discount: parseInt(discount),
-        categoryId: parseInt(categoryId),
-        subcategoryId: parseInt(subcategoryId),
+        price: parseFloat(req.body.price),
+        discount: parseInt(req.body.discount),
+        categoryId: parseInt(req.body.categoryId),
+        subcategoryId: parseInt(req.body.subcategoryId)
     });
 
+    // Return validation errors if input is not valid
     if (!parseResult.success) {
         return res.status(400).json({ errors: parseResult.error.format() });
     }
 
     try {
-        const { img, name, price, discount, categoryId, subcategoryId, description, metadata, isTopSelling } = parseResult.data;
+        const {
+            name, description, price, discount, imageUrl,
+            categoryId, subcategoryId, sizes, isTopSelling, isStok, isCheaps
+        } = parseResult.data;
 
+        // Check if category and subcategory exist in the database
         const category = await prisma.category.findUnique({
-            where: { id: parseInt(categoryId) }
+            where: { id: categoryId }
         });
-
         const subcategory = await prisma.subcategory.findUnique({
-            where: { id: parseInt(subcategoryId) }
+            where: { id: subcategoryId }
         });
 
         if (!category || !subcategory) {
-            return res.status(400).json({ error: 'Category veya Subcategory yoxdur' });
+            return res.status(400).json({ error: 'Kateqoriya və ya alt kateqoriya mövcud deyil' });
         }
 
+        // Create the new product
         const product = await prisma.product.create({
             data: {
-                isTopSelling,
-                img,
                 name,
+                description,
                 price,
                 discount,
+                imageUrl,
+                sizes,
                 categoryId,
                 subcategoryId,
-                description,
-                metadata
+                isTopSelling,
+                isStok,
+                isCheaps
             }
         });
-        res.status(201).json({ status: true, ...product });
+
+        // Return the newly created product as a response
+        res.status(201).json({ status: true, product });
+
     } catch (error) {
+        // Handle any unexpected errors
         console.log(error);
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: 'Daxili server xətası' });
     }
 };
 

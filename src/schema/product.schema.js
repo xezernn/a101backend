@@ -1,30 +1,40 @@
 const { z } = require("zod");
 
 const productSchema = z.object({
-    img: z.array(z.string().url({ message: 'Invalid URL format' })).nonempty({ message: 'At least one image URL is required' }),
+    imageUrl: z.array(z.string().url({ message: 'Şəklin URL formatı yanlışdır' })).nonempty({ message: 'Ən azı bir şəkil URL-si lazımdır' }),
     name: z.string()
-        .min(3, { message: 'Product name must be at least 3 characters long' })
-        .max(255, { message: 'Product name must be less than 255 characters' })
+        .min(3, { message: 'Məhsulun adı ən azı 3 simvol olmalıdır' })
+        .max(255, { message: 'Məhsulun adı 255 simvoldan az olmalıdır' })
         .trim()
-        .nonempty({ message: 'Product name is required' }),
+        .nonempty({ message: 'Məhsulun adı lazımdır' }),
     price: z.number()
-        .positive({ message: 'Price must be a positive number' })
-        .min(0.01, { message: 'Price must be at least 0.01' })
-        .max(10000, { message: 'Price must be less than 10,000' }),
+        .positive({ message: 'Qiymət müsbət rəqəm olmalıdır' })
+        .min(0.01, { message: 'Qiymət ən azı 0.01 olmalıdır' })
+        .max(10000, { message: 'Qiymət 10,000-dən az olmalıdır' }),
     discount: z.number()
-        .min(0, { message: 'Discount must be at least 0' })
-        .int({ message: 'Discount must be an integer' })
-        .max(100, { message: 'Discount must be less than or equal to 100' }),
+        .min(0, { message: 'Endirim ən azı 0 olmalıdır' })
+        .int({ message: 'Endirim tam ədəd olmalıdır' })
+        .max(100, { message: 'Endirim 100-dən çox olmamalıdır' }),
     categoryId: z.number()
-        .int({ message: 'Category ID must be an integer' })
-        .positive({ message: 'Category ID must be a positive integer' }),
+        .int({ message: 'Kateqoriya ID tam ədəd olmalıdır' })
+        .positive({ message: 'Kateqoriya ID müsbət tam ədəd olmalıdır' }), 
+    subcategoryId: z.number()
+        .int({ message: 'Alt kateqoriya ID tam ədəd olmalıdır' })
+        .positive({ message: 'Alt kateqoriya ID müsbət tam ədəd olmalıdır' }),
     description: z.string()
-        .min(3, { message: 'Product description must be at least 3 characters long' })
-        .max(255, { message: 'Product description must be less than 255 characters' })
+        .min(3, { message: 'Məhsulun təsviri ən azı 3 simvol olmalıdır' })
+        .max(255, { message: 'Məhsulun təsviri 255 simvoldan az olmalıdır' })
         .trim(),
-    metadata: z.object({}).optional()
+    metadata: z.string()
+        .min(3, { message: 'Məhsulun meta məlumatları ən azı 3 simvol olmalıdır' })
+        .max(255, { message: 'Məhsulun meta məlumatları 255 simvoldan az olmalıdır' })
+        .trim()
+        .optional(),
+    sizes: z.array(z.string()).optional(),
+    isTopSelling: z.boolean().optional(),
+    isStok: z.boolean().optional(),
+    isCheaps: z.boolean().optional(),
 });
-
 
 
 module.exports = productSchema;

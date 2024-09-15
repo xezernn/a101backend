@@ -10,7 +10,9 @@ const getProductsBySubcategory = async (req, res) => {
 
         const products = await prisma.subcategory.findUnique({
             where: { id }
-        }).Product();
+        }).products();
+
+        if (!products) return res.status(404).json({ "error": `Daxil etdiyiniz id (${id}) üzrə kateqoriya tapılmadı!` })
 
         const array = products?.map(endirim)
 

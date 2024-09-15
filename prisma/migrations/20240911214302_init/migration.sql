@@ -22,9 +22,10 @@ CREATE TABLE "Product" (
     "sizes" TEXT[],
     "categoryId" INTEGER NOT NULL,
     "subcategoryId" INTEGER NOT NULL,
-    "isStok" BOOLEAN NOT NULL DEFAULT true,
     "isTopSelling" BOOLEAN NOT NULL DEFAULT false,
+    "isStok" BOOLEAN NOT NULL DEFAULT true,
     "isCheaps" BOOLEAN NOT NULL DEFAULT false,
+    "metadata" TEXT NOT NULL,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
@@ -46,6 +47,16 @@ CREATE TABLE "Subcategory" (
     CONSTRAINT "Subcategory_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Slider" (
+    "id" SERIAL NOT NULL,
+    "img" TEXT NOT NULL,
+    "categoryId" INTEGER NOT NULL,
+    "subcategoryId" INTEGER NOT NULL,
+
+    CONSTRAINT "Slider_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
@@ -57,3 +68,9 @@ ALTER TABLE "Product" ADD CONSTRAINT "Product_subcategoryId_fkey" FOREIGN KEY ("
 
 -- AddForeignKey
 ALTER TABLE "Subcategory" ADD CONSTRAINT "Subcategory_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Slider" ADD CONSTRAINT "Slider_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Slider" ADD CONSTRAINT "Slider_subcategoryId_fkey" FOREIGN KEY ("subcategoryId") REFERENCES "Subcategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
