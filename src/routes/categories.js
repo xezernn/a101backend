@@ -23,6 +23,11 @@
  *               name:
  *                 type: string
  *                 description: Kateqoriya adı
+ *               img:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: Kateqoriyanın şəkilləri (array şəklində string URL-lər)
  *     responses:
  *       201:
  *         description: Kateqoriya uğurla yaradıldı
@@ -37,6 +42,11 @@
  *                 name:
  *                   type: string
  *                   description: Kateqoriya adı
+ *                 img:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   description: Kateqoriyanın şəkilləri
  *       400:
  *         description: Yanlış sorğu məlumatları
  *         content:
@@ -44,7 +54,7 @@
  *             schema:
  *               type: object
  *               properties:
- *                 validaton_errors:
+ *                 validation_errors:
  *                   type: object
  *                   description: Xətalar haqqında məlumat
  *       500:
@@ -82,6 +92,11 @@
  *                   name:
  *                     type: string
  *                     description: Kateqoriya adı
+ *                   img:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                     description: Kateqoriyanın şəkilləri
  *                   subcategory:
  *                     type: array
  *                     items:
@@ -133,6 +148,11 @@
  *                 name:
  *                   type: string
  *                   description: Kateqoriya adı
+ *                 img:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   description: Kateqoriyanın şəkilləri
  *                 subcategory:
  *                   type: array
  *                   items:
@@ -191,6 +211,11 @@
  *               name:
  *                 type: string
  *                 description: Yenilənəcək kateqoriya adı
+ *               img:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: Kateqoriyanın şəkilləri
  *     responses:
  *       200:
  *         description: Kateqoriya uğurla yeniləndi
@@ -205,6 +230,11 @@
  *                 name:
  *                   type: string
  *                   description: Yenilənmiş kateqoriya adı
+ *                 img:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   description: Yenilənmiş kateqoriyanın şəkilləri
  *       404:
  *         description: Kateqoriya tapılmadı
  *         content:
@@ -339,7 +369,7 @@
  *   put:
  *     tags: 
  *       - Kateqoriyalar
- *     summary: Alt kateqoriyanı yeniləyin
+ *     summary: Alt kateqorianı yeniləyin
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -400,7 +430,7 @@
  *   delete:
  *     tags: 
  *       - Kateqoriyalar
- *     summary: Alt kateqoriyanı silin
+ *     summary: Alt kateqorianı silin
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -467,8 +497,8 @@ router.get('/:id', getCategoriesById);
 router.put('/:id', validator(categorySchema), auth, editCategoriesById);
 router.delete('/:id', auth, deleteCategoryById);
 
-router.post('/subcategory',validator(subcategorySchema), auth, createSubcategory);
-router.put('/subcategory/:id',validator(categorySchema), auth, updateSubcategory);
+router.post('/subcategory', validator(subcategorySchema), auth, createSubcategory);
+router.put('/subcategory/:id', validator(categorySchema), auth, updateSubcategory);
 router.delete('/subcategory/:id', auth, deleteSubcategory);
 
 module.exports = router;
