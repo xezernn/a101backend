@@ -9,16 +9,6 @@ const options = {
       version: '3.3.3',
       description: 'A101 backend qısa təsviri:',
     },
-    servers: [
-      {
-        url: 'http://localhost:3219',
-        description: 'Local development server'
-      },
-      {
-        url: 'https://a101backend.vercel.app',
-        description: 'Production server'
-      }
-    ],
     components: {
       securitySchemes: {
         bearerAuth: {
