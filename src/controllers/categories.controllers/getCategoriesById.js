@@ -23,6 +23,7 @@ const getCategoriesById = async (req, res) => {
         const yeniObj = {
             id: categories[0].id,
             name: categories[0].name,
+            img: categories[0].img,
             subcategory: categories[0].subcategories.map(item => {
                 return {
                     id: item.id,

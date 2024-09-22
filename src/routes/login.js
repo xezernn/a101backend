@@ -12,8 +12,6 @@
  *     tags: 
  *       - Autentifikasiya
  *     summary: Yeni istifadəçi qeydiyyatdan keçirin
- *     security:
- *       - bearerAuth: []
  *     requestBody:
  *       content:
  *         application/json:
@@ -29,7 +27,7 @@
  *                 description: İstifadəçi şifrəsi
  *               role:
  *                 type: string
- *                 description: İstifadəçinin rolu ya ADMIN yada USER
+ *                 description: İstifadəçinin rolu (ADMIN ya da USER)
  *     responses:
  *       201:
  *         description: İstifadəçi uğurla qeydiyyatdan keçdi
@@ -387,7 +385,8 @@
  *                 error:
  *                   type: string
  *                   description: Xətanın açıqlaması
- */ 
+ */
+
 
 const express = require('express');
 const router = express.Router();

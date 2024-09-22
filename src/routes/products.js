@@ -191,9 +191,6 @@
  *               items:
  *                 type: object
  *                 properties:
- *                   id:
- *                     type: integer
- *                     description: Məhsulun unikal ID-si
  *                   name:
  *                     type: string
  *                     description: Məhsulun adı
@@ -201,11 +198,11 @@
  *                     type: boolean
  *                     description: Məhsul ən çox satılan məhsuldurmu
  *                   isStok:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul stokda mövcuddurmu
  *                   isCheaps:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul ucuz məhsuldurmu
  *                   price:
  *                     type: number
  *                     description: Məhsulun qiyməti
@@ -214,17 +211,23 @@
  *                     description: Məhsulun endirim faizi
  *                   imageUrl:
  *                     type: array
- *                     description: Məhsulun şəkilləri (array şəklində)
+ *                     description: Məhsulun şəkilləri
  *                     items:
  *                       type: string
  *                       format: url
  *                       description: Şəklin URL-i
+ *                   sizes:
+ *                     type: array
+ *                     description: Məhsulun mövcud ölçüləri
+ *                     items:
+ *                       type: string
+ *                       description: Mövcud ölçülər
  *                   categoryId:
  *                     type: integer
- *                     description: Məhsulun kateqoriyası ID-si
+ *                     description: Məhsulun kateqoriya ID-si
  *                   subcategoryId:
  *                     type: integer
- *                     description: Məhsulun alt kateqoriyası ID-si
+ *                     description: Məhsulun alt kateqoriya ID-si
  *                   description:
  *                     type: string
  *                     description: Məhsulun təsviri
@@ -260,9 +263,6 @@
  *               items:
  *                 type: object
  *                 properties:
- *                   id:
- *                     type: integer
- *                     description: Məhsulun unikal ID-si
  *                   name:
  *                     type: string
  *                     description: Məhsulun adı
@@ -270,11 +270,11 @@
  *                     type: boolean
  *                     description: Məhsul ən çox satılan məhsuldurmu
  *                   isStok:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul stokda mövcuddurmu
  *                   isCheaps:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul ucuz məhsuldurmu
  *                   price:
  *                     type: number
  *                     description: Məhsulun qiyməti
@@ -283,17 +283,23 @@
  *                     description: Məhsulun endirim faizi
  *                   imageUrl:
  *                     type: array
- *                     description: Məhsulun şəkilləri (array şəklində)
+ *                     description: Məhsulun şəkilləri
  *                     items:
  *                       type: string
  *                       format: url
  *                       description: Şəklin URL-i
+ *                   sizes:
+ *                     type: array
+ *                     description: Məhsulun mövcud ölçüləri
+ *                     items:
+ *                       type: string
+ *                       description: Mövcud ölçülər
  *                   categoryId:
  *                     type: integer
- *                     description: Məhsulun kateqoriyası ID-si
+ *                     description: Məhsulun kateqoriya ID-si
  *                   subcategoryId:
  *                     type: integer
- *                     description: Məhsulun alt kateqoriyası ID-si
+ *                     description: Məhsulun alt kateqoriya ID-si
  *                   description:
  *                     type: string
  *                     description: Məhsulun təsviri
@@ -336,21 +342,18 @@
  *               items:
  *                 type: object
  *                 properties:
- *                   id:
- *                     type: integer
- *                     description: Məhsulun unikal ID-si
  *                   name:
  *                     type: string
  *                     description: Məhsulun adı
-  *                  isTopSelling:
+ *                   isTopSelling:
  *                     type: boolean
  *                     description: Məhsul ən çox satılan məhsuldurmu
  *                   isStok:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul stokda mövcuddurmu
  *                   isCheaps:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul ucuz məhsuldurmu
  *                   price:
  *                     type: number
  *                     description: Məhsulun qiyməti
@@ -359,17 +362,23 @@
  *                     description: Məhsulun endirim faizi
  *                   imageUrl:
  *                     type: array
- *                     description: Məhsulun şəkilləri (array şəklində)
+ *                     description: Məhsulun şəkilləri
  *                     items:
  *                       type: string
  *                       format: url
  *                       description: Şəklin URL-i
+ *                   sizes:
+ *                     type: array
+ *                     description: Məhsulun mövcud ölçüləri
+ *                     items:
+ *                       type: string
+ *                       description: Mövcud ölçülər
  *                   categoryId:
  *                     type: integer
- *                     description: Məhsulun kateqoriyası ID-si
+ *                     description: Məhsulun kateqoriya ID-si
  *                   subcategoryId:
  *                     type: integer
- *                     description: Məhsulun alt kateqoriyası ID-si
+ *                     description: Məhsulun alt kateqoriya ID-si
  *                   description:
  *                     type: string
  *                     description: Məhsulun təsviri
@@ -420,21 +429,18 @@
  *             schema:
  *               type: object
  *               properties:
- *                   id:
- *                     type: integer
- *                     description: Məhsulun unikal ID-si
  *                   name:
  *                     type: string
  *                     description: Məhsulun adı
- *                  isTopSelling:
+ *                   isTopSelling:
  *                     type: boolean
  *                     description: Məhsul ən çox satılan məhsuldurmu
  *                   isStok:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul stokda mövcuddurmu
  *                   isCheaps:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul ucuz məhsuldurmu
  *                   price:
  *                     type: number
  *                     description: Məhsulun qiyməti
@@ -443,17 +449,23 @@
  *                     description: Məhsulun endirim faizi
  *                   imageUrl:
  *                     type: array
- *                     description: Məhsulun şəkilləri (array şəklində)
+ *                     description: Məhsulun şəkilləri
  *                     items:
  *                       type: string
  *                       format: url
  *                       description: Şəklin URL-i
+ *                   sizes:
+ *                     type: array
+ *                     description: Məhsulun mövcud ölçüləri
+ *                     items:
+ *                       type: string
+ *                       description: Mövcud ölçülər
  *                   categoryId:
  *                     type: integer
- *                     description: Məhsulun kateqoriyası ID-si
+ *                     description: Məhsulun kateqoriya ID-si
  *                   subcategoryId:
  *                     type: integer
- *                     description: Məhsulun alt kateqoriyası ID-si
+ *                     description: Məhsulun alt kateqoriya ID-si
  *                   description:
  *                     type: string
  *                     description: Məhsulun təsviri
@@ -504,43 +516,49 @@
  *           schema:
  *             type: object
  *             properties:
- *               name:
- *                 type: string
- *                 description: Məhsulun adı
- *               isTopSelling:
- *                 type: boolean
- *                 description: Məhsul ən çox satılan məhsuldurmu
- *               isStok:
- *                  type: boolean
- *                  description: Məhsul ən çox satılan məhsuldurmu
- *               isCheaps:
- *                  type: boolean
- *                  description: Məhsul ən çox satılan məhsuldurmu
- *               price:
- *                 type: number
- *                 description: Məhsulun qiyməti
- *               discount:
- *                 type: integer
- *                 description: Məhsulun endirim faizi
- *               imageUrl:
- *                 type: array
- *                 description: Məhsulun şəkilləri (array şəklində)
- *                 items:
- *                   type: string
- *                   format: url
- *                   description: Şəklin URL-i
- *               categoryId:
- *                 type: integer
- *                 description: Məhsulun kateqoriyası ID-si
- *               subcategoryId:
- *                 type: integer
- *                 description: Məhsulun alt kateqoriyası ID-si
- *               description:
- *                 type: string
- *                 description: Məhsulun təsviri
- *               metadata:
- *                 type: string
- *                 description: Məhsulun əlavə məlumatları
+ *                   name:
+ *                     type: string
+ *                     description: Məhsulun adı
+ *                   isTopSelling:
+ *                     type: boolean
+ *                     description: Məhsul ən çox satılan məhsuldurmu
+ *                   isStok:
+ *                     type: boolean
+ *                     description: Məhsul stokda mövcuddurmu
+ *                   isCheaps:
+ *                     type: boolean
+ *                     description: Məhsul ucuz məhsuldurmu
+ *                   price:
+ *                     type: number
+ *                     description: Məhsulun qiyməti
+ *                   discount:
+ *                     type: integer
+ *                     description: Məhsulun endirim faizi
+ *                   imageUrl:
+ *                     type: array
+ *                     description: Məhsulun şəkilləri
+ *                     items:
+ *                       type: string
+ *                       format: url
+ *                       description: Şəklin URL-i
+ *                   sizes:
+ *                     type: array
+ *                     description: Məhsulun mövcud ölçüləri
+ *                     items:
+ *                       type: string
+ *                       description: Mövcud ölçülər
+ *                   categoryId:
+ *                     type: integer
+ *                     description: Məhsulun kateqoriya ID-si
+ *                   subcategoryId:
+ *                     type: integer
+ *                     description: Məhsulun alt kateqoriya ID-si
+ *                   description:
+ *                     type: string
+ *                     description: Məhsulun təsviri
+ *                   metadata:
+ *                     type: string
+ *                     description: Məhsulun əlavə məlumatları
  *     responses:
  *       200:
  *         description: Məhsul uğurla redaktə olundu
@@ -650,9 +668,6 @@
  *               items:
  *                 type: object
  *                 properties:
- *                   id:
- *                     type: integer
- *                     description: Məhsulun unikal ID-si
  *                   name:
  *                     type: string
  *                     description: Məhsulun adı
@@ -660,11 +675,11 @@
  *                     type: boolean
  *                     description: Məhsul ən çox satılan məhsuldurmu
  *                   isStok:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul stokda mövcuddurmu
  *                   isCheaps:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul ucuz məhsuldurmu
  *                   price:
  *                     type: number
  *                     description: Məhsulun qiyməti
@@ -673,17 +688,23 @@
  *                     description: Məhsulun endirim faizi
  *                   imageUrl:
  *                     type: array
- *                     description: Məhsulun şəkilləri (array şəklində)
+ *                     description: Məhsulun şəkilləri
  *                     items:
  *                       type: string
  *                       format: url
  *                       description: Şəklin URL-i
+ *                   sizes:
+ *                     type: array
+ *                     description: Məhsulun mövcud ölçüləri
+ *                     items:
+ *                       type: string
+ *                       description: Mövcud ölçülər
  *                   categoryId:
  *                     type: integer
- *                     description: Məhsulun kateqoriyası ID-si
+ *                     description: Məhsulun kateqoriya ID-si
  *                   subcategoryId:
  *                     type: integer
- *                     description: Məhsulun alt kateqoriyası ID-si
+ *                     description: Məhsulun alt kateqoriya ID-si
  *                   description:
  *                     type: string
  *                     description: Məhsulun təsviri
@@ -726,9 +747,6 @@
  *               items:
  *                 type: object
  *                 properties:
- *                   id:
- *                     type: integer
- *                     description: Məhsulun unikal ID-si
  *                   name:
  *                     type: string
  *                     description: Məhsulun adı
@@ -736,11 +754,11 @@
  *                     type: boolean
  *                     description: Məhsul ən çox satılan məhsuldurmu
  *                   isStok:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul stokda mövcuddurmu
  *                   isCheaps:
- *                      type: boolean
- *                      description: Məhsul ən çox satılan məhsuldurmu
+ *                     type: boolean
+ *                     description: Məhsul ucuz məhsuldurmu
  *                   price:
  *                     type: number
  *                     description: Məhsulun qiyməti
@@ -749,17 +767,23 @@
  *                     description: Məhsulun endirim faizi
  *                   imageUrl:
  *                     type: array
- *                     description: Məhsulun şəkilləri (array şəklində)
+ *                     description: Məhsulun şəkilləri
  *                     items:
  *                       type: string
  *                       format: url
  *                       description: Şəklin URL-i
+ *                   sizes:
+ *                     type: array
+ *                     description: Məhsulun mövcud ölçüləri
+ *                     items:
+ *                       type: string
+ *                       description: Mövcud ölçülər
  *                   categoryId:
  *                     type: integer
- *                     description: Məhsulun kateqoriyası ID-si
+ *                     description: Məhsulun kateqoriya ID-si
  *                   subcategoryId:
  *                     type: integer
- *                     description: Məhsulun alt kateqoriyası ID-si
+ *                     description: Məhsulun alt kateqoriya ID-si
  *                   description:
  *                     type: string
  *                     description: Məhsulun təsviri

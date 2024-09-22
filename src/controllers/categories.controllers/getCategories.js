@@ -17,6 +17,7 @@ const getCategories = async (req, res) => {
         const formattedCategories = categories.map(category => ({
             id: category.id,
             name: category.name,
+            img: category.img,
             subcategory: category.subcategories.map(subcat => ({
                 id: subcat.id,
                 name: subcat.name,
