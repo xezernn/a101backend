@@ -1,0 +1,70 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["tracing"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") 
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+    id          Int     @id @default(autoincrement())
+    username    String  @unique
+    password    String
+    role        UserRole @default(USER) 
+}
+
+enum UserRole {
+    USER    
+    ADMIN 
+}
+
+model Product {
+  id             Int        @id @default(autoincrement())
+  name           String
+  description    String
+  metadata       String?
+  imageUrl       String[]
+  sizes          String[]
+  categoryId     Int
+  subcategoryId  Int
+  price          Float  
+  discount       Float  
+  category       Category    @relation(fields: [categoryId], references: [id])
+  subcategory    Subcategory @relation(fields: [subcategoryId], references: [id])
+  isTopSelling   Boolean     @default(false)
+  isStok         Boolean     @default(true)
+  isCheaps       Boolean     @default(false)
+}
+
+model Category {
+  id          Int           @id @default(autoincrement())
+  name        String
+  products    Product[]     
+  subcategories Subcategory[]
+  slider      Slider[]  
+  img         String[]
+}
+
+model Subcategory {
+  id          Int           @id @default(autoincrement())
+  name        String
+  categoryId  Int
+  category    Category       @relation(fields: [categoryId], references: [id])
+  products    Product[]   
+  slider      Slider[]  
+}
+
+model Slider {
+  id            Int         @id @default(autoincrement())
+  img           String       
+  categoryId    Int
+  subcategoryId Int
+  category       Category    @relation(fields: [categoryId], references: [id])
+  subcategory    Subcategory @relation(fields: [subcategoryId], references: [id])
+}
+
+
+
