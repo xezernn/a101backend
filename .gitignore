@@ -1,7 +1,7 @@
-node_modules
 
 .env
 package-lock.json
 
 ./index.htm
 .vercel
+node_modules

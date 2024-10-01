@@ -20,8 +20,6 @@ const subcategorySchema = z.object({
         .min(1, { message: 'Subcategory name is required' }),
     categoryId: z.number()
         .int({ message: 'Category ID must be an integer' })
-        .min(1, { message: 'Category ID is required' })
-        .max(3, { message: 'Category ID must be ' })
 })
 
 
