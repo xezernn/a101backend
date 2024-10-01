@@ -16,8 +16,13 @@ const getDiscountedProducts = async (req, res) => {
             take: 20
         });
         const array = discountedProducts?.map(endirim)
-        
-        res.status(200).json(array);
+
+        res.status(200).json({
+            products: array,
+            totalProducts: array.length,
+            totalPages: 1,
+            currentPage: 1,
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

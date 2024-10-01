@@ -32,7 +32,12 @@ const searchProduct = async (req, res) => {
 
     const array = products?.map(endirim)
 
-    res.status(200).json(array);
+    res.status(200).json({
+      products: array,
+      totalProducts: array.length,
+      totalPages: null,
+      currentPage: null,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
