@@ -32,7 +32,7 @@ model Product {
   subcategoryId  Int
   price          Float  
   discount       Float  
-  category       Category    @relation(fields: [categoryId], references: [id])
+  category       Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade) // Add onDelete here
   subcategory    Subcategory @relation(fields: [subcategoryId], references: [id])
   isTopSelling   Boolean     @default(false)
   isStok         Boolean     @default(true)
@@ -40,19 +40,19 @@ model Product {
 }
 
 model Category {
-  id          Int           @id @default(autoincrement())
-  name        String
-  products    Product[]     
-  subcategories Subcategory[]
-  slider      Slider[]  
-  img         String[]
+  id            Int             @id @default(autoincrement())
+  img           String[]
+  name          String
+  slider        Slider[]  
+  products      Product[]       // Remove onDelete here
+  subcategories Subcategory[]   // Remove onDelete here
 }
 
 model Subcategory {
   id          Int           @id @default(autoincrement())
   name        String
   categoryId  Int
-  category    Category       @relation(fields: [categoryId], references: [id])
+  category    Category       @relation(fields: [categoryId], references: [id], onDelete: Cascade) // Add onDelete here
   products    Product[]   
   slider      Slider[]  
 }
