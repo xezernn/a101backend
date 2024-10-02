@@ -1,10 +1,20 @@
 const { PrismaClient } = require('@prisma/client');
+const { subcategorySchema } = require('../../schema/categories.schema');
 const prisma = new PrismaClient();
 
 const updateSubcategory = async (req, res) => {
-    const { id } = req.params;
+    const id = +req.params.id;
     const { name } = req.body;
-    if (!id) return res.status(400).json({ error: "Id mütləq göndərilməlidir!" })
+
+    // Validate that the id is provided
+    if (!id) return res.status(400).json({ error: "Id mütləq göndərilməlidir!" });
+
+    // Validate the request body against the schema
+    try {
+        subcategorySchema.parse({ name, categoryId: id }); // Pass the body object (in this case, just `name`) to parse
+    } catch (validationError) {
+        return res.status(400).json({ error: validationError.errors });
+    }
 
     try {
         const subcategory = await prisma.subcategory.update({
