@@ -28,7 +28,7 @@ const getCategoriesById = async (req, res) => {
                 return {
                     id: item.id,
                     name: item.name,
-                    slug : `${categories[0].name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}/${item.name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}`                
+                    slug : `${categories[0].name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}/${item.name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}`.replace("&-", "")               
                 }
             })
         }

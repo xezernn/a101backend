@@ -21,7 +21,7 @@ const getCategories = async (req, res) => {
             subcategory: category.subcategories.map(subcat => ({
                 id: subcat.id,
                 name: subcat.name,
-                slug: `${category.name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}/${subcat.name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}`
+                slug: `${category.name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}/${subcat.name.toLocaleLowerCase("tr-Tr").split(" ").join("-")}`.replace("&-", "")
             }
             ))
         }))
