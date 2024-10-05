@@ -9,8 +9,7 @@ const productSchema = z.object({
         .nonempty({ message: 'Məhsulun adı lazımdır' }),
     price: z.number()
         .positive({ message: 'Qiymət müsbət rəqəm olmalıdır' })
-        .min(0.01, { message: 'Qiymət ən azı 0.01 olmalıdır' })
-        .max(10000, { message: 'Qiymət 10,000-dən az olmalıdır' }),
+        .min(0.01, { message: 'Qiymət ən azı 0.01 olmalıdır' }),
     discount: z.number()
         .min(0, { message: 'Endirim ən azı 0 olmalıdır' })
         .int({ message: 'Endirim tam ədəd olmalıdır' })

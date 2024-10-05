@@ -26,7 +26,7 @@ const getCategories = async (req, res) => {
             ))
         }))
 
-        res.status(200).json(formattedCategories);
+        res.status(200).json(formattedCategories);  
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
